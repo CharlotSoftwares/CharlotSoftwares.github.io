@@ -1,183 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="CharlotOS 404 Page – Looks like you're lost!" />
-  <title>404 – Page Not Found | CharlotOS</title>
-  <link rel="icon" href="/images/favicon.png" type="image/png" />
-  <style>
-    /* Base */
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Ubuntu, sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      transition: background 0.3s, color 0.3s;
-      color: #1a1a1a;
-      position: relative;
-      background-color: #fff9f0;
-      background-image: 
-        /* Large triangles, low opacity, light mode */
-        linear-gradient(150deg, rgba(249, 168, 37, 0.1) 25%, transparent 25%),
-        linear-gradient(30deg, rgba(251, 140, 0, 0.1) 25%, transparent 25%),
-        linear-gradient(150deg, transparent 75%, rgba(249, 168, 37, 0.1) 75%),
-        linear-gradient(30deg, transparent 75%, rgba(251, 140, 0, 0.1) 75%);
-      background-size: 80px 140px;
-      background-position: 0 0, 0 70px, 40px -70px, -40px 0px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>404 – Page Not Found | CharlotOS</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Ubuntu, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: #1a1a1a;
+    background-color: #2e7d32; /* Dark green base for light mode */
+    position: relative;
+    overflow-x: hidden;
+    transition: background-color 0.3s, color 0.3s;
+  }
 
-    /* Dark mode */
-    .dark-mode {
-      background-color: #1a1a1a;
-      color: #f5f5f5;
-      background-image:
-        /* Grey subtle triangles */
-        linear-gradient(150deg, rgba(42, 42, 42, 0.1) 25%, transparent 25%),
-        linear-gradient(30deg, rgba(61, 61, 61, 0.1) 25%, transparent 25%),
-        linear-gradient(150deg, transparent 75%, rgba(42, 42, 42, 0.1) 75%),
-        linear-gradient(30deg, transparent 75%, rgba(61, 61, 61, 0.1) 75%);
-      background-size: 60px 105px;
-      background-position: 0 0, 0 52.5px, 30px -52.5px, -30px 0px;
-    }
+  /* Random puzzled triangles container */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: transparent;
+    mask-image: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image:
+      /* Many triangles with different colors, sizes, angles */
+      linear-gradient(120deg, rgba(255 140 0 / 0.15) 33%, transparent 33%),
+      linear-gradient(30deg, rgba(251 168 37 / 0.15) 33%, transparent 33%),
+      linear-gradient(150deg, transparent 66%, rgba(251 168 37 / 0.15) 66%),
+      linear-gradient(45deg, rgba(255 140 0 / 0.12) 25%, transparent 25%),
+      linear-gradient(90deg, rgba(251 168 37 / 0.08) 20%, transparent 20%);
+    background-position:
+      10% 20%, 40% 40%, 70% 60%, 30% 70%, 80% 30%;
+    background-size:
+      200px 200px,
+      150px 150px,
+      250px 250px,
+      180px 180px,
+      100px 100px;
+    background-blend-mode: screen;
+  }
 
-    /* Wave container */
-    .wave {
-      width: 100%;
-      height: 150px;
-      overflow: hidden;
-      position: relative;
-      z-index: 0;
-    }
+  .dark-mode {
+    color: #f5f5f5;
+    background-color: #121212; /* Dark background */
 
-    .wave svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-      transition: fill 0.3s;
-    }
+    /* Different puzzle triangles for dark */
+  }
 
-    /* Green wave for light mode, blue for dark mode */
-    .wave svg path {
-      fill: #4caf50;
-    }
-    .dark-mode .wave svg path {
-      fill: #4c4cff;
-    }
+  .dark-mode::before {
+    background-image:
+      linear-gradient(120deg, rgba(76, 76, 255, 0.12) 33%, transparent 33%),
+      linear-gradient(30deg, rgba(50, 50, 50, 0.15) 33%, transparent 33%),
+      linear-gradient(150deg, transparent 66%, rgba(76, 76, 255, 0.10) 66%),
+      linear-gradient(45deg, rgba(50, 50, 50, 0.08) 25%, transparent 25%),
+      linear-gradient(90deg, rgba(100, 100, 255, 0.06) 20%, transparent 20%);
+    background-position:
+      15% 25%, 45% 35%, 70% 55%, 35% 75%, 80% 25%;
+    background-size:
+      200px 200px,
+      160px 160px,
+      250px 250px,
+      180px 180px,
+      120px 120px;
+    background-blend-mode: screen;
+  }
 
-    /* Logo positioned under the wave, bigger size */
-    header {
-      text-align: center;
-      margin-top: -60px; /* under wave */
-      z-index: 1;
-      position: relative;
-    }
+  /* Wave container and wave */
+  .wave {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+  }
 
-    header img {
-      width: 160px;
-      max-width: 90vw;
-      display: block;
-      margin: 0 auto 1rem;
-      filter: drop-shadow(0 0 3px rgba(0,0,0,0.2));
-      transition: filter 0.3s;
-    }
-    .dark-mode header img {
-      filter: drop-shadow(0 0 4px rgba(255,255,255,0.3));
-    }
+  .wave svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transition: fill 0.3s;
+  }
 
-    main {
-      flex: 1;
-      text-align: center;
-      padding: 2rem 1rem 3rem;
-      z-index: 1;
-      position: relative;
-    }
+  .wave svg path {
+    fill: #4caf50; /* green wave for light */
+  }
 
-    main img {
-      max-width: 300px;
-      margin: 2rem auto 1rem;
-      display: block;
-    }
+  .dark-mode .wave svg path {
+    fill: #4c4cff; /* blue wave for dark */
+  }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
+  /* Logo under the wave */
+  header {
+    text-align: center;
+    margin-top: -60px;
+    position: relative;
+    z-index: 20;
+  }
 
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
+  header img {
+    width: 160px;
+    max-width: 90vw;
+    margin: 0 auto 1rem;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
+    transition: filter 0.3s;
+  }
 
-    .home-link {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background-color: #4caf50;
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      border-radius: 6px;
-      transition: background-color 0.3s;
-    }
+  .dark-mode header img {
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+  }
 
-    .home-link:hover {
-      background-color: #388e3c;
-    }
+  main {
+    flex: 1;
+    text-align: center;
+    padding: 2rem 1rem 3rem;
+    position: relative;
+    z-index: 20;
+  }
 
-    .dark-mode .home-link {
-      background-color: #4c4cff;
-    }
-    .dark-mode .home-link:hover {
-      background-color: #3434ff;
-    }
+  main img {
+    max-width: 300px;
+    margin: 2rem auto 1rem;
+    display: block;
+  }
 
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      background: rgba(0, 0, 0, 0.02);
-      color: inherit;
-      position: relative;
-      z-index: 1;
-    }
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
 
-    /* Discreet toggle button at top right */
-    .toggle-btn {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background: rgba(255, 255, 255, 0.6);
-      border: none;
-      padding: 0.3rem 0.7rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #333;
-      border-radius: 4px;
-      cursor: pointer;
-      box-shadow: 0 0 4px rgba(0,0,0,0.1);
-      transition: background 0.3s, color 0.3s;
-      z-index: 10;
-      user-select: none;
-    }
-    .toggle-btn:hover {
-      background: rgba(255, 255, 255, 0.9);
-    }
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
 
-    /* Dark mode button style */
-    .dark-mode .toggle-btn {
-      background: rgba(20, 20, 20, 0.8);
-      color: #eee;
-      box-shadow: 0 0 5px rgba(255,255,255,0.2);
-    }
-    .dark-mode .toggle-btn:hover {
-      background: rgba(20, 20, 20, 1);
-    }
-  </style>
+  .home-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #4caf50;
+    color: white;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+
+  .home-link:hover {
+    background-color: #388e3c;
+  }
+
+  .dark-mode .home-link {
+    background-color: #4c4cff;
+  }
+
+  .dark-mode .home-link:hover {
+    background-color: #3434ff;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    background: rgba(0, 0, 0, 0.02);
+    color: inherit;
+    position: relative;
+    z-index: 20;
+  }
+
+  /* Toggle button discreet top right */
+  .toggle-btn {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s, color 0.3s;
+    z-index: 30;
+    user-select: none;
+  }
+
+  .toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .dark-mode .toggle-btn {
+    background: rgba(30, 30, 30, 0.8);
+    color: #eee;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+  }
+
+  .dark-mode .toggle-btn:hover {
+    background: rgba(30, 30, 30, 1);
+  }
+</style>
 </head>
 <body>
   <div class="wave" aria-hidden="true">
-    <svg viewBox="0 0 1440 150" preserveAspectRatio="none" role="img">
+    <svg viewBox="0 0 1440 150" preserveAspectRatio="none" role="img" aria-label="Wave decoration">
       <path d="M0,96L80,85.3C160,75,320,53,480,58.7C640,64,800,96,960,112C1120,128,1280,128,1360,128L1440,128V0H0Z"></path>
     </svg>
   </div>
@@ -224,3 +257,4 @@
   </script>
 </body>
 </html>
+
