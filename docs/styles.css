@@ -6,7 +6,8 @@ color: black;
 font-size: 25px;
 }
 
-dark-mode {
+body.dark-mode {
 background-color: black;
 color: white;
 }
+
