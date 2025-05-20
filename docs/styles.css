@@ -1,13 +1,11 @@
-/* styles.css */
 body {
-padding: 25px;
-background-color: white;
-color: black;
-font-size: 25px;
+  padding: 25px;
+  background-color: white;
+  color: black;
+  font-size: 25px;
 }
 
 body.dark-mode {
-background-color: black;
-color: white;
+  background-color: black;
+  color: white;
 }
-
