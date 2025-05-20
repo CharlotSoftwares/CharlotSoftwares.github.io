@@ -2,29 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="CharlotOS 404 Page – Looks like you're lost!">
-  <title>404 – Page Not Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="CharlotOS 404 Page – Looks like you're lost!" />
+  <title>404 – Page Not Found | CharlotOS</title>
   <link rel="icon" href="/images/favicon.png" type="image/png" />
-  <link rel="stylesheet" href="/styles.css" />
   <style>
     body {
       margin: 0;
       font-family: "Segoe UI", Ubuntu, sans-serif;
       color: #1a1a1a;
       background-color: #fff3e0;
+      /* Light mode geometric pattern with orange shades */
       background-image:
-        radial-gradient(circle at 20% 30%, #ffe0b2 8%, transparent 10%),
-        radial-gradient(circle at 80% 70%, #ffcc80 8%, transparent 10%),
-        radial-gradient(circle at 50% 50%, #ffb74d 10%, transparent 11%);
-      background-size: cover;
-      background-repeat: no-repeat;
+        linear-gradient(45deg, #f9a825 25%, transparent 25%),
+        linear-gradient(-45deg, #fbc02d 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #f9a825 75%),
+        linear-gradient(-45deg, transparent 75%, #fbc02d 75%);
+      background-size: 60px 60px;
+      background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
       transition: background 0.3s ease, color 0.3s ease;
     }
 
+    /* Dark mode geometric shapes (grey polygons) */
     .dark-mode {
       background-color: #121212;
-      background-image: none;
+      background-image:
+        linear-gradient(45deg, #2a2a2a 25%, transparent 25%),
+        linear-gradient(-45deg, #3d3d3d 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #2a2a2a 75%),
+        linear-gradient(-45deg, transparent 75%, #3d3d3d 75%);
+      background-size: 40px 40px;
+      background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
       color: #f5f5f5;
     }
 
@@ -34,25 +42,29 @@
       position: relative;
     }
 
+    /* Waves */
     .wave {
       width: 100%;
       height: 100px;
       margin-bottom: -5px;
-    }
-
-    .wave path {
-      fill: #4caf50; /* green wave for light mode */
       transition: fill 0.3s ease;
     }
-
+    .wave path {
+      fill: #4caf50; /* green wave for light mode */
+    }
     .dark-mode .wave path {
-      fill: #2196f3; /* blue wave in dark mode */
+      fill: #2196f3; /* blue wave for dark mode */
     }
 
+    /* Logo */
     .logo {
       display: block;
       margin: 2rem auto 1rem auto;
       max-width: 200px;
+      transition: filter 0.3s ease;
+    }
+    .dark-mode .logo {
+      filter: brightness(1.2);
     }
 
     h1 {
@@ -61,6 +73,7 @@
       margin-top: 0.5rem;
     }
 
+    /* Toggle button styling */
     .mode-toggle {
       position: fixed;
       top: 1rem;
@@ -71,14 +84,21 @@
       font-size: 0.9rem;
       border-radius: 5px;
       cursor: pointer;
-      transition: background 0.2s ease;
+      transition: background 0.2s ease, color 0.2s ease;
+      color: #1a1a1a;
     }
-
+    .mode-toggle:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
     .dark-mode .mode-toggle {
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.5);
       color: white;
     }
+    .dark-mode .mode-toggle:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
 
+    /* 404 image */
     img[alt="404"] {
       display: block;
       margin: 2rem auto;
@@ -93,18 +113,15 @@
   </style>
 </head>
 <body>
-  <button class="mode-toggle" onclick="toggleDarkMode()">Light Mode / Dark Mode</button>
+  <button class="mode-toggle" id="mode-toggle">Enable Dark Mode</button>
 
   <header>
-    <!-- Green or blue wave -->
-    <svg class="wave" viewBox="0 0 1440 150" preserveAspectRatio="none">
+    <svg class="wave" viewBox="0 0 1440 150" preserveAspectRatio="none" aria-hidden="true">
       <path d="M0,0 C360,150 1080,0 1440,150 L1440,0 L0,0 Z"></path>
     </svg>
 
-    <!-- Mascot logo -->
     <img src="/images/CharlotOS-Logo-01.png" alt="Charlot the Budgie - Mascot" class="logo" />
 
-    <!-- Error text -->
     <h1>404 – Page Not Found</h1>
     <img src="/images/404.png" alt="404" />
   </header>
@@ -114,20 +131,31 @@
   </footer>
 
   <script>
+    const toggleBtn = document.getElementById('mode-toggle');
+    const body = document.body;
+
     function toggleDarkMode() {
-      const body = document.body;
-      body.classList.toggle("dark-mode");
-      const isDark = body.classList.contains("dark-mode");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
+      body.classList.toggle('dark-mode');
+      if (body.classList.contains('dark-mode')) {
+        toggleBtn.textContent = 'Enable Light Mode';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        toggleBtn.textContent = 'Enable Dark Mode';
+        localStorage.setItem('theme', 'light');
+      }
     }
 
-    // On load: apply stored theme
-    window.onload = () => {
-      const theme = localStorage.getItem("theme");
-      if (theme === "dark") {
-        document.body.classList.add("dark-mode");
+    toggleBtn.addEventListener('click', toggleDarkMode);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        toggleBtn.textContent = 'Enable Light Mode';
+      } else {
+        toggleBtn.textContent = 'Enable Dark Mode';
       }
-    };
+    });
   </script>
 </body>
 </html>
