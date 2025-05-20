@@ -2,30 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="CharlotOS 404 Page – Looks like you're lost!" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CharlotOS 404 Page – Looks like you're lost!">
   <title>404 – Page Not Found | CharlotOS</title>
   <link rel="icon" href="/images/favicon.png" type="image/png" />
   <style>
+    /* Base reset and fonts */
     body {
       margin: 0;
-      font-family: "Segoe UI", Ubuntu, sans-serif;
+      font-family: 'Segoe UI', Ubuntu, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
       color: #1a1a1a;
-      background-color: #fff3e0;
-      /* Light mode geometric pattern with orange shades */
+      position: relative;
+      background-color: #fff9f0;
+      /* Light mode geometric background: orange shapes */
       background-image:
         linear-gradient(45deg, #f9a825 25%, transparent 25%),
-        linear-gradient(-45deg, #fbc02d 25%, transparent 25%),
+        linear-gradient(-45deg, #fb8c00 25%, transparent 25%),
         linear-gradient(45deg, transparent 75%, #f9a825 75%),
-        linear-gradient(-45deg, transparent 75%, #fbc02d 75%);
+        linear-gradient(-45deg, transparent 75%, #fb8c00 75%);
       background-size: 60px 60px;
       background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
-      transition: background 0.3s ease, color 0.3s ease;
     }
 
-    /* Dark mode geometric shapes (grey polygons) */
+    /* Dark mode */
     .dark-mode {
-      background-color: #121212;
+      background-color: #1a1a1a;
+      color: #f5f5f5;
+      /* Dark mode geometric background: grey shapes */
       background-image:
         linear-gradient(45deg, #2a2a2a 25%, transparent 25%),
         linear-gradient(-45deg, #3d3d3d 25%, transparent 25%),
@@ -33,128 +40,195 @@
         linear-gradient(-45deg, transparent 75%, #3d3d3d 75%);
       background-size: 40px 40px;
       background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
-      color: #f5f5f5;
     }
 
+    /* Wave container */
+    .wave {
+      width: 100%;
+      height: 150px;
+      overflow: hidden;
+      position: relative;
+      z-index: 0;
+    }
+
+    .wave svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      transition: fill 0.3s;
+    }
+
+    /* Green wave for light mode, blue for dark mode */
+    .wave svg path {
+      fill: #4caf50;
+    }
+    .dark-mode .wave svg path {
+      fill: #4c4cff;
+    }
+
+    /* Logo positioned under the wave, bigger size */
     header {
       text-align: center;
-      padding-top: 2rem;
+      margin-top: -60px; /* pull up to just under wave */
+      z-index: 1;
       position: relative;
     }
 
-    /* Waves */
-    .wave {
-      width: 100%;
-      height: 100px;
-      margin-bottom: -5px;
-      transition: fill 0.3s ease;
+    header img {
+      width: 160px;
+      max-width: 90vw;
+      display: block;
+      margin: 0 auto 1rem;
+      filter: drop-shadow(0 0 3px rgba(0,0,0,0.2));
+      transition: filter 0.3s;
     }
-    .wave path {
-      fill: #4caf50; /* green wave for light mode */
-    }
-    .dark-mode .wave path {
-      fill: #2196f3; /* blue wave for dark mode */
+    .dark-mode header img {
+      filter: drop-shadow(0 0 4px rgba(255,255,255,0.3));
     }
 
-    /* Logo */
-    .logo {
-      display: block;
-      margin: 2rem auto 1rem auto;
-      max-width: 200px;
-      transition: filter 0.3s ease;
+    main {
+      flex: 1;
+      text-align: center;
+      padding: 2rem 1rem 3rem;
+      z-index: 1;
+      position: relative;
     }
-    .dark-mode .logo {
-      filter: brightness(1.2);
+
+    main img {
+      max-width: 300px;
+      margin: 2rem auto 1rem;
+      display: block;
     }
 
     h1 {
-      text-align: center;
-      font-size: 2rem;
-      margin-top: 0.5rem;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
     }
 
-    /* Toggle button styling */
-    .mode-toggle {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background: rgba(255, 255, 255, 0.7);
-      border: none;
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.2s ease, color 0.2s ease;
-      color: #1a1a1a;
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
     }
-    .mode-toggle:hover {
-      background: rgba(255, 255, 255, 0.9);
-    }
-    .dark-mode .mode-toggle {
-      background: rgba(0, 0, 0, 0.5);
+
+    .home-link {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: #4caf50;
       color: white;
-    }
-    .dark-mode .mode-toggle:hover {
-      background: rgba(0, 0, 0, 0.8);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: background-color 0.3s;
     }
 
-    /* 404 image */
-    img[alt="404"] {
-      display: block;
-      margin: 2rem auto;
-      max-width: 300px;
+    .home-link:hover {
+      background-color: #388e3c;
+    }
+
+    .dark-mode .home-link {
+      background-color: #4c4cff;
+    }
+    .dark-mode .home-link:hover {
+      background-color: #3434ff;
     }
 
     footer {
       text-align: center;
-      padding: 2rem;
-      font-size: 0.8rem;
+      padding: 1rem;
+      font-size: 0.9rem;
+      background: rgba(0, 0, 0, 0.02);
+      color: inherit;
+      position: relative;
+      z-index: 1;
     }
+
+    /* Discreet toggle button at top right */
+    .toggle-btn {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255, 255, 255, 0.6);
+      border: none;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #333;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 0 0 4px rgba(0,0,0,0.1);
+      transition: background 0.3s, color 0.3s;
+      z-index: 10;
+      user-select: none;
+    }
+    .toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Dark mode button style */
+    .dark-mode .toggle-btn {
+      background: rgba(20, 20, 20, 0.8);
+      color: #eee;
+      box-shadow: 0 0 5px rgba(255,255,255,0.2);
+    }
+    .dark-mode .toggle-btn:hover {
+      background: rgba(20, 20, 20, 1);
+    }
+
   </style>
 </head>
 <body>
-  <button class="mode-toggle" id="mode-toggle">Enable Dark Mode</button>
+  <div class="wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 150" preserveAspectRatio="none" role="img">
+      <path d="M0,96L80,85.3C160,75,320,53,480,58.7C640,64,800,96,960,112C1120,128,1280,128,1360,128L1440,128V0H0Z"></path>
+    </svg>
+  </div>
 
   <header>
-    <svg class="wave" viewBox="0 0 1440 150" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0,0 C360,150 1080,0 1440,150 L1440,0 L0,0 Z"></path>
-    </svg>
-
-    <img src="/images/CharlotOS-Logo-01.png" alt="Charlot the Budgie - Mascot" class="logo" />
-
-    <h1>404 – Page Not Found</h1>
-    <img src="/images/404.png" alt="404" />
+    <img src="/images/CharlotOS-Logo-01.png" alt="CharlotOS Mascot" />
   </header>
 
+  <button class="toggle-btn" id="toggleBtn" aria-label="Toggle light and dark mode">Dark Mode</button>
+
+  <main>
+    <img src="/images/404.png" alt="404 Illustration" />
+    <h1>404 – Page Not Found</h1>
+    <p>Oops! Charlot couldn’t find this page. 🐦</p>
+    <a href="/" class="home-link">← Return to Home</a>
+  </main>
+
   <footer>
-    &copy; 2025 CharlotOS – Proudly built in Québec 🐦
+    &copy; 2025 CharlotOS. Built with 🐦 in Québec.
   </footer>
 
   <script>
-    const toggleBtn = document.getElementById('mode-toggle');
+    const toggleBtn = document.getElementById('toggleBtn');
     const body = document.body;
+
+    function updateButtonText() {
+      if (body.classList.contains('dark-mode')) {
+        toggleBtn.textContent = 'Light Mode';
+      } else {
+        toggleBtn.textContent = 'Dark Mode';
+      }
+    }
 
     function toggleDarkMode() {
       body.classList.toggle('dark-mode');
       if (body.classList.contains('dark-mode')) {
-        toggleBtn.textContent = 'Enable Light Mode';
         localStorage.setItem('theme', 'dark');
       } else {
-        toggleBtn.textContent = 'Enable Dark Mode';
         localStorage.setItem('theme', 'light');
       }
+      updateButtonText();
     }
 
     toggleBtn.addEventListener('click', toggleDarkMode);
 
     window.addEventListener('DOMContentLoaded', () => {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
+      if (localStorage.getItem('theme') === 'dark') {
         body.classList.add('dark-mode');
-        toggleBtn.textContent = 'Enable Light Mode';
-      } else {
-        toggleBtn.textContent = 'Enable Dark Mode';
       }
+      updateButtonText();
     });
   </script>
 </body>
