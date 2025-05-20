@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CharlotOS 404 Page – Looks like you're lost!">
+  <title>404 – Page Not Found</title>
+  <link rel="icon" href="/images/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Ubuntu, sans-serif;
+      color: #1a1a1a;
+      background-color: #fff3e0;
+      background-image:
+        radial-gradient(circle at 20% 30%, #ffe0b2 8%, transparent 10%),
+        radial-gradient(circle at 80% 70%, #ffcc80 8%, transparent 10%),
+        radial-gradient(circle at 50% 50%, #ffb74d 10%, transparent 11%);
+      background-size: cover;
+      background-repeat: no-repeat;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      background-image: none;
+      color: #f5f5f5;
+    }
+
+    header {
+      text-align: center;
+      padding-top: 2rem;
+      position: relative;
+    }
+
+    .wave {
+      width: 100%;
+      height: 100px;
+      margin-bottom: -5px;
+    }
+
+    .wave path {
+      fill: #4caf50; /* green wave for light mode */
+      transition: fill 0.3s ease;
+    }
+
+    .dark-mode .wave path {
+      fill: #2196f3; /* blue wave in dark mode */
+    }
+
+    .logo {
+      display: block;
+      margin: 2rem auto 1rem auto;
+      max-width: 200px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-top: 0.5rem;
+    }
+
+    .mode-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255, 255, 255, 0.7);
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .dark-mode .mode-toggle {
+      background: rgba(0, 0, 0, 0.4);
+      color: white;
+    }
+
+    img[alt="404"] {
+      display: block;
+      margin: 2rem auto;
+      max-width: 300px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <button class="mode-toggle" onclick="toggleDarkMode()">Light Mode / Dark Mode</button>
+
+  <header>
+    <!-- Green or blue wave -->
+    <svg class="wave" viewBox="0 0 1440 150" preserveAspectRatio="none">
+      <path d="M0,0 C360,150 1080,0 1440,150 L1440,0 L0,0 Z"></path>
+    </svg>
+
+    <!-- Mascot logo -->
+    <img src="/images/CharlotOS-Logo-01.png" alt="Charlot the Budgie - Mascot" class="logo" />
+
+    <!-- Error text -->
+    <h1>404 – Page Not Found</h1>
+    <img src="/images/404.png" alt="404" />
+  </header>
+
+  <footer>
+    &copy; 2025 CharlotOS – Proudly built in Québec 🐦
+  </footer>
+
+  <script>
+    function toggleDarkMode() {
+      const body = document.body;
+      body.classList.toggle("dark-mode");
+      const isDark = body.classList.contains("dark-mode");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    }
+
+    // On load: apply stored theme
+    window.onload = () => {
+      const theme = localStorage.getItem("theme");
+      if (theme === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+    };
+  </script>
+</body>
+</html>
