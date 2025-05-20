@@ -12,13 +12,12 @@
     display: flex;
     flex-direction: column;
     color: #1a1a1a;
-    background-color: #2e7d32; /* Dark green base for light mode */
+    background-color: #e65100; /* deep orange base for light mode */
     position: relative;
     overflow-x: hidden;
     transition: background-color 0.3s, color 0.3s;
   }
 
-  /* Random puzzled triangles container */
   body::before {
     content: "";
     position: fixed;
@@ -26,17 +25,15 @@
     pointer-events: none;
     z-index: 0;
     background: transparent;
-    mask-image: none;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-image:
-      /* Many triangles with different colors, sizes, angles */
       linear-gradient(120deg, rgba(255 140 0 / 0.15) 33%, transparent 33%),
-      linear-gradient(30deg, rgba(251 168 37 / 0.15) 33%, transparent 33%),
-      linear-gradient(150deg, transparent 66%, rgba(251 168 37 / 0.15) 66%),
+      linear-gradient(30deg, rgba(255 180 60 / 0.15) 33%, transparent 33%),
+      linear-gradient(150deg, transparent 66%, rgba(255 180 60 / 0.15) 66%),
       linear-gradient(45deg, rgba(255 140 0 / 0.12) 25%, transparent 25%),
-      linear-gradient(90deg, rgba(251 168 37 / 0.08) 20%, transparent 20%);
+      linear-gradient(90deg, rgba(255 180 60 / 0.08) 20%, transparent 20%);
     background-position:
       10% 20%, 40% 40%, 70% 60%, 30% 70%, 80% 30%;
     background-size:
@@ -50,9 +47,7 @@
 
   .dark-mode {
     color: #f5f5f5;
-    background-color: #121212; /* Dark background */
-
-    /* Different puzzle triangles for dark */
+    background-color: #121212;
   }
 
   .dark-mode::before {
@@ -73,7 +68,6 @@
     background-blend-mode: screen;
   }
 
-  /* Wave container and wave */
   .wave {
     width: 100%;
     height: 150px;
@@ -90,14 +84,13 @@
   }
 
   .wave svg path {
-    fill: #4caf50; /* green wave for light */
+    fill: #ff6d00; /* bright orange wave for light */
   }
 
   .dark-mode .wave svg path {
     fill: #4c4cff; /* blue wave for dark */
   }
 
-  /* Logo under the wave */
   header {
     text-align: center;
     margin-top: -60px;
@@ -144,7 +137,7 @@
   .home-link {
     display: inline-block;
     padding: 0.75rem 1.5rem;
-    background-color: #4caf50;
+    background-color: #ff6d00;
     color: white;
     font-weight: 600;
     border-radius: 6px;
@@ -153,7 +146,7 @@
   }
 
   .home-link:hover {
-    background-color: #388e3c;
+    background-color: #e65100;
   }
 
   .dark-mode .home-link {
@@ -174,7 +167,6 @@
     z-index: 20;
   }
 
-  /* Toggle button discreet top right */
   .toggle-btn {
     position: fixed;
     top: 1rem;
@@ -219,42 +211,4 @@
     <img src="/images/CharlotOS-Logo-01.png" alt="CharlotOS Mascot" />
   </header>
 
-  <button class="toggle-btn" id="toggleBtn" aria-label="Toggle light and dark mode">Dark Mode</button>
-
-  <main>
-    <img src="/images/404.png" alt="404 Illustration" />
-    <h1>404 – Page Not Found</h1>
-    <p>Oops! Charlot couldn’t find this page. 🐦</p>
-    <a href="/" class="home-link">← Return to Home</a>
-  </main>
-
-  <footer>
-    &copy; 2025 CharlotOS. Built with 🐦 in Québec.
-  </footer>
-
-  <script>
-    const toggleBtn = document.getElementById('toggleBtn');
-    const body = document.body;
-
-    function updateButtonText() {
-      toggleBtn.textContent = body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
-    }
-
-    function toggleDarkMode() {
-      body.classList.toggle('dark-mode');
-      localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
-      updateButtonText();
-    }
-
-    toggleBtn.addEventListener('click', toggleDarkMode);
-
-    window.addEventListener('DOMContentLoaded', () => {
-      if (localStorage.getItem('theme') === 'dark') {
-        body.classList.add('dark-mode');
-      }
-      updateButtonText();
-    });
-  </script>
-</body>
-</html>
-
+  <button class="
