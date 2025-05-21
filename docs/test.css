@@ -203,3 +203,38 @@
   .dark-mode .toggle-btn:hover {
     background-color: rgba(255,255,255,0.15);
   }
+.footer-links-box {
+  max-width: 600px;
+  margin: 1.5rem auto 0 auto;
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  background: rgba(0, 123, 255, 0.12); /* Adjust color & opacity as needed */
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.05);
+  font-size: 1.1rem;
+  backdrop-filter: blur(2px);
+}
+
+/* Link styling */
+.footer-links-box a {
+  color: #0056b3; /* Match your theme color */
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.footer-links-box a:hover {
+  color: #003366;
+  text-decoration: underline;
+}
+
+/* Optional: for dark mode */
+body.dark-mode .footer-links-box {
+  background: rgba(44, 62, 80, 0.18); /* Adjust to a dark, semi-transparent color */
+}
+
+body.dark-mode .footer-links-box a {
+  color: #90caf9;
+}
