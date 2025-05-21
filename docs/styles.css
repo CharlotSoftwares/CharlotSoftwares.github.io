@@ -1,21 +1,145 @@
+/* Base styles for both modes */
 body {
-  padding: 25px;
-  background-color: white;
-  color: black;
-  font-size: 25px;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+  background-color: #f4f4f4;
+  color: #222;
 }
 
-body.dark-mode {
-  background-color: black;
-  color: white;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-header {
+.container {
+  padding: 2rem;
   text-align: center;
 }
 
-header img {
-  display: block;
-  margin: 0 auto;
+/* 404 Text Animation */
+.text-404 {
+  font-size: 5rem;
+  font-weight: bold;
+  color: #4CAF50;
+  animation: float 3s infinite ease-in-out;
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Dark mode toggle button */
+.dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #555;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 9999;
+  transition: background-color 0.3s;
+}
+
+.dark-mode-toggle:hover {
+  background: #444;
+}
+
+/* Dark mode overrides */
+.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.dark-mode .text-404 {
+  color: #4c4cff;
+}
+
+.dark-mode .dark-mode-toggle {
+  background-color: #333;
+}
+
+.dark-mode .dark-mode-toggle:hover {
+  background-color: #222;
+}
+
+/* Wave Header */
+.wave-header {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #4CAF50;
+  margin-bottom: 2rem;
+  z-index: 10;
+}
+
+.wave-header svg {
+  display: block;
+  width: 100%;
+  height: 150px;
+  fill: #388E3C;
+  transition: fill 0.3s;
+}
+
+.dark-mode .wave-header {
+  background-color: #4c4cff;
+}
+
+.dark-mode .wave-header svg {
+  fill: #3434ff;
+}
+
+/* Bottom Menu with Wave */
+.bottom-wave-menu {
+  position: relative;
+  width: 100%;
+  z-index: 20;
+  background-color: #4CAF50;
+}
+
+.bottom-wave-menu .bottom-wave {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100px;
+  fill: #388E3C;
+  transition: fill 0.3s;
+  z-index: 10;
+}
+
+.dark-mode .bottom-wave-menu {
+  background-color: #4c4cff;
+}
+
+.dark-mode .bottom-wave-menu .bottom-wave {
+  fill: #3434ff;
+}
+
+.bottom-menu {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 0 2rem;
+  position: relative;
+  z-index: 20;
+}
+
+.menu-link {
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.menu-link:hover,
+.menu-link:focus {
+  background-color: rgba(255, 255, 255, 0.3);
+  outline: none;
+}
