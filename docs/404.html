@@ -211,4 +211,27 @@
     <img src="/images/CharlotOS-Logo-01.png" alt="CharlotOS Mascot" />
   </header>
 
-  <button class="
+  <button class="toggle-btn" aria-pressed="false" aria-label="Toggle dark mode">Dark Mode</button>
+
+  <main>
+    <img src="/images/404-image.png" alt="404 error illustration" />
+    <h1>404 – Page Not Found</h1>
+    <p>Sorry, the page you are looking for doesn’t exist.</p>
+    <a href="/" class="home-link" role="button">Go Home</a>
+  </main>
+
+  <footer>
+    &copy; 2025 CharlotOS. All rights reserved.
+  </footer>
+
+  <script>
+    const toggleBtn = document.querySelector('.toggle-btn');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      toggleBtn.setAttribute('aria-pressed', isDark);
+      toggleBtn.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+    });
+  </script>
+</body>
+</html>
