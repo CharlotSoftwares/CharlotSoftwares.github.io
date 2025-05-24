@@ -105,5 +105,15 @@
       }
     });
   </script>
+  
+<script>
+    function copyText() {
+      const textInput = document.getElementById('textToCopy');
+      textInput.select(); // Select the text
+      textInput.setSelectionRange(0, 99999); // For mobile devices
+      document.execCommand('copy'); // Copy the text to clipboard
+      alert('Text copied: ' + textInput.value); // Optional feedback
+    }
+  </script>
 </body>
 </html>
