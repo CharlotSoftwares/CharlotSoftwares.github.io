@@ -53,8 +53,6 @@
         <li>Having Python 3 installed with PATH (install it <a href="https://www.python.org/downloads/">here</a>)</li>
         <li>Having Cryptography Library installed (Run <code>pip install cryptography</code> from your command line</li>
         <li>How to run the script: Run <code>python path/to/Cryptinox###.py</code></li>
-        <input type="text" id="textToCopy" value="Hello, World!" readonly>
-        <button onclick="copyText()">Copy Text</button>
         <li> You can also run it with <code>py path/to/Cryptinox###.py</code> from your command line</li>
       </ul>
       <p>It's the same for Windows but with <code>python path\to\Cryptinox###.py</code>.</p>
@@ -104,16 +102,6 @@
         toggleBtn.setAttribute('aria-pressed', 'false');
       }
     });
-  </script>
-  
-<script>
-    function copyText() {
-      const textInput = document.getElementById('textToCopy');
-      textInput.select(); // Select the text
-      textInput.setSelectionRange(0, 99999); // For mobile devices
-      document.execCommand('copy'); // Copy the text to clipboard
-      alert('Text copied: ' + textInput.value); // Optional feedback
-    }
   </script>
 </body>
 </html>
