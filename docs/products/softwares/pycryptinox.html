@@ -15,6 +15,20 @@
 <meta name="Classification" content="Technology">
 <link rel="stylesheet" type="text/css" href="/test.css">
 <link rel="icon" type="image/png" href="/images/favicon.png">
+<style>
+  button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+</style>
 </head>
 <body>
   <div class="wave" aria-hidden="true">
@@ -38,9 +52,13 @@
       <ul style="list-style: disc; text-align: left; max-width: 500px; margin: 1rem auto;">
         <li>Having Python 3 installed with PATH (install it <a href="https://www.python.org/downloads/">here</a>)</li>
         <li>Having Cryptography Library installed (Run <code>pip install cryptography</code> from your command line</li>
-        <li>How to run the script: Run <code>python path/to/Cryptinox###.py</code> or <code>py path/to/Cryptinox###.py</code> from your command line</li>
+        <li>How to run the script: Run <code>python path/to/Cryptinox###.py</code></li>
+        <input type="text" id="textToCopy" value="Hello, World!" readonly>
+        <button onclick="copyText()">Copy Text</button>
+        <li> You can also run it with <code>py path/to/Cryptinox###.py</code> from your command line</li>
       </ul>
-      <p>(Same for Windows but with <code>python path\to\Cryptinox###.py</code> or <code>py path\to\Cryptinox###.py</code>)</p>
+      <p>It's the same for Windows but with <code>python path\to\Cryptinox###.py</code>.</p>
+      <p>Of course you can use <code>py path\to\Cryptinox###.py</code>.</p>
       <p>(Don't forget to replace "###" by the downloaded version's number)</p>
     </section>
   </main>
