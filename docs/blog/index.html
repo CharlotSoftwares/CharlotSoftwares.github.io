@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blog</title>
+<meta name="description" content="The official CharlotOS website blog page. We build free and open-source operating systems and software — proudly made in Québec.">
+<meta name="keywords" content="GNU, Open-Source, FOSS, OS, Operating System, CharlotOS, Linux, Budgie, Québec, Canada, Tech, Software, Start-Up, Programming, Free Software, Desktop OS">
+<meta name="author" content="CharlotOS">
+<meta name="copyright" content="CharlotOS">
+<meta name="language" content="EN">
+<meta name="subject" content="CharlotOS">
+<meta name="category" content="Technology">
+<meta name="rating" content="General">
+<meta name="Classification" content="Technology">
+<link rel="stylesheet" type="text/css" href="/test.css">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+  <div class="wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 150" preserveAspectRatio="none" role="img" aria-label="Decorative wave">
+      <path d="M0,96L80,85.3C160,75,320,53,480,58.7C640,64,800,96,960,112C1120,128,1280,128,1360,128L1440,128V0H0Z"></path>
+    </svg>
+  </div>
+
+  <header>
+    <img src="/images/CharlotOS-Logo-01.png" alt="Charlot the Budgie - Mascot of CharlotOS" />
+    <h1>Blog</h1>
+  </header>
+
+  <button class="toggle-btn" aria-pressed="false" aria-label="Toggle dark mode">Dark Mode</button>
+  
+  <main>
+    <section>
+    <h2>Recent posts</h2>
+      <ul style="list-style: disc; text-align: left; max-width: 500px; margin: 1rem auto;">
+        <li><a href="/blog/ "> </a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Charlot Softwares. Made with 🐦 in Québec.
+    <div class="footer-links-box">
+    <a href="/about">About</a>
+    <a href="/index">Home</a>
+    <a href="/products">Products</a>
+    <!-- Add more links as needed -->
+    </div>
+  </footer>
+
+  <script>
+    const toggleBtn = document.querySelector('.toggle-btn');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      toggleBtn.setAttribute('aria-pressed', isDark);
+      toggleBtn.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if(localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        toggleBtn.textContent = 'Light Mode';
+        toggleBtn.setAttribute('aria-pressed', 'true');
+      } else {
+        toggleBtn.textContent = 'Dark Mode';
+        toggleBtn.setAttribute('aria-pressed', 'false');
+      }
+    });
+  </script>
+</body>
+</html>
