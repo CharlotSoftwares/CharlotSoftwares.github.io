@@ -28,8 +28,6 @@
     <h1>Charlot Softwares - CyberLab</h1>
     <p>This is the CyberLab download page</p>
   </header>
-
-  <button class="toggle-btn" aria-pressed="false" aria-label="Toggle dark mode">Dark Mode</button>
   
   <main>
     <section>
@@ -50,27 +48,5 @@
     <!-- Add more links as needed -->
     </div>
   </footer>
-
-  <script>
-    const toggleBtn = document.querySelector('.toggle-btn');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      const isDark = document.body.classList.contains('dark-mode');
-      toggleBtn.setAttribute('aria-pressed', isDark);
-      toggleBtn.textContent = isDark ? 'Light Mode' : 'Dark Mode';
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
-
-    window.addEventListener('DOMContentLoaded', () => {
-      if(localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-mode');
-        toggleBtn.textContent = 'Light Mode';
-        toggleBtn.setAttribute('aria-pressed', 'true');
-      } else {
-        toggleBtn.textContent = 'Dark Mode';
-        toggleBtn.setAttribute('aria-pressed', 'false');
-      }
-    });
-  </script>
 </body>
 </html>
