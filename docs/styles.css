@@ -161,3 +161,7 @@ footer {
   color: #64b5f6;
   text-decoration: underline;
 }
+
+a {
+  color: green !important;
+}
